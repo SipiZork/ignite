@@ -4,14 +4,17 @@ const initialState = {
   new: [],
   upcoming: [],
   searched: [],
-
 }
 
 const gameReducer = (state = initialState, action) => {
-  switch (action.type) {
+  const { type, payload } = action;
+  switch (type) {
     case "FETCH_GAMES":
       return {
-        ...state
+        ...state,
+        popular: payload.popular,
+        upcoming: payload.upcoming,
+        new: payload.new
       }
     default:
       return {
