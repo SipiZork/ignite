@@ -1,15 +1,21 @@
-import React, {useEffect} from 'react';
-import { loadGames } from './actions/gamesAction';
-import { useDispatch } from 'react-redux';
+import React from 'react';
+import { Route } from 'react-router-dom';
+//Components and Pages
+import Home from './pages/Home';
+import GlobalStyle from './components/GlobalStyles';
+import Nav from './components/Nav';
+import { AnimateSharedLayout } from 'framer-motion';
 
 function App() {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(loadGames())
-  });
   return (
     <div className="App">
-      <h1>Hello Igntie</h1>
+      <AnimateSharedLayout type="crossfade">
+        <GlobalStyle />
+        <Nav />
+        <Route path={['/game/:id', '/']}>
+          <Home />
+        </Route>
+      </AnimateSharedLayout>
     </div>
   );
 }
